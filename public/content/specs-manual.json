@@ -1,0 +1,53 @@
+{
+  "machines": [
+    {
+      "id": "jcf-jmb25",
+      "name": "JCF JMB-25 Rebar Bender",
+      "origin": "Korea",
+      "type": "bender",
+      "specs": {
+        "bendingCapacity": "Ø25 mm (SD400)",
+        "motorPower": "2.2 kW / 3.0 HP",
+        "supply": "220V / 50-60Hz / Single Phase",
+        "bendingSpeed": "0-180° in 6 seconds",
+        "dimensions": "485 × 465 × 470 mm",
+        "weight": "102 kg"
+      }
+    },
+    {
+      "id": "molendijk-msc38e",
+      "name": "Molendijk MSC38-E",
+      "origin": "Netherlands",
+      "type": "cutter",
+      "specs": {
+        "structure": "One-piece cast iron",
+        "motorPower": "3.0 kW (3-Phase)",
+        "maxRPM": 52,
+        "cuttingCapacity": "Ø30 mm (R=650 N/mm²)",
+        "weight": "245 kg"
+      }
+    },
+    {
+      "id": "molendijk-msc74e",
+      "name": "Molendijk MSC74-E",
+      "origin": "Netherlands",
+      "type": "cutter",
+      "specs": {
+        "structure": "Heavy duty one-piece cast iron",
+        "motorPower": "7.5 kW (3-Phase)",
+        "maxRPM": 30,
+        "cuttingCapacity": "Ø64 mm (R=650 N/mm²)",
+        "weight": "1280 kg"
+      }
+    }
+  ],
+  "contact": {
+    "engineers": [
+      { "name": "Mohammad Anwar", "nameAr": "محمد أنور", "phone": "+966590098586", "role": "Mechanical Lead" },
+      { "name": "Tasawwar", "nameAr": "تصور", "phone": "+966510243582", "role": "Electrical Lead" }
+    ],
+    "address": "Abi Shawk Street, off Prince Salman Road, Al-Sinaiyah al-Qadimah, Riyadh",
+    "addressAr": "الرياض، المنطقة الصناعية القديمة، شارع أبي شوك المتفرع من الأمير سلمان",
+    "hours": "Saturday - Thursday: 08:00 - 18:00"
+  }
+}

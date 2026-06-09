@@ -1,0 +1,703 @@
+NEXT.JS 14+ WEBSITE IMPLEMENTATION SPECIFICATION
+Project: Khalifa Industrial Repair / ورشة صيانة خليفة
+Client Location: Sinaiyah al-Qadimah, Riyadh, Saudi Arabia
+1. BRAND SYSTEM & STRUCTURAL DEFINITION
+1.1 Brand Identity & Local Context
+The website is designed for "Khalifa Maintenance Workshop" (ورشة صيانة محل خليفة), a highly experienced heavy industrial repair shop located on Abi Shawk Street, branching from Prince Salman Road in Al-Sinaiyah al-Qadimah, Riyadh. The workshop specializes in repairing heavy steel cutting and bending machinery, electric motor rewinding, site generator maintenance, and professional field power tools.
+
+Suggested Brand Name (B2B Appeal): Khalifa Industrial Repair | خليفة لصيانة المعدات الصناعية
+
+Suggested Logo Concept: A clean modern monogram combining the mechanical geometry of a heavy shearing blade with the circular stator teeth of an electric motor rotor.
+
+Primary Typography: Inter (Latin sans-serif) combined with Cairo (Arabic sans-serif) to ensure high readability and clean alignment.
+
+Base Color Palette:
+
+Primary (Industrial Cobalt Blue): #1E40AF (Light Theme) / #3B82F6 (Dark Theme)
+
+Accent (Heavy Machinery Amber): #D97706 (Light Theme) / #F59E0B (Dark Theme)
+
+Neutral Light: Slate 50 (#F8FAFC) / Slate 100 (#F1F5F9)
+
+Neutral Dark: Deep Charcoal (#090D16) / Dark Navy (#111827)
+
+2. SYSTEM ARCHITECTURE & FILE DIRECTORY
+Build this project using the Next.js 14+ App Router with Tailwind CSS, Framer Motion for smooth industrial micro-animations, and Lucide Icons. The directory structure must match the layout below:text
+khalifa-repair-website/
+├── app/
+│   ├── layout.tsx             # Theme Context, Cairo/Inter Fonts, Global Shell
+│   ├── page.tsx               # Home Page with Hero and Client Portrait Placeholder
+│   ├── services/
+│   │   └── page.tsx           # Category Tabs (Cutters, Benders, Motors, Tools, Engines)
+│   ├── troubleshooting/
+│   │   └── page.tsx           # Interactive Diagnostic Selector Tool & Specs Tables
+│   ├── contact/
+│   │   └── page.tsx           # Contact Form, Phone Actions, Google Map Integration
+│   └── globals.css            # Custom Animations and Base Styles
+├── components/
+│   ├── Navbar.tsx             # Bilingual Header with Dark Mode Toggle
+│   ├── Footer.tsx             # Quick Links & Physical Address Details
+│   ├── ThemeProvider.tsx      # next-themes wrapper for seamless transition switching
+│   └── DiagnosticWidget.tsx   # Interactive troubleshoot finder component
+├── public/
+│   ├── content/
+│   │   └── specs-manual.json  # Raw technical specification data structure
+│   └── images/
+│       └── placeholder-engineers.jpg # Simulated placeholder for the client image
+└── tailwind.config.js         # Base configurations for animations and custom theme variables
+
+
+---
+
+## 3. CORE ROUTE SPECIFICATIONS & CODE IMPLEMENTATIONS
+
+### 3.1 Global Root Layout (`app/layout.tsx`)
+This file wraps all pages, configures the dual language metadata, enables deep transitions between light and dark themes, and forces standard styling.
+
+```typescript
+import React from 'react';
+import type { Metadata } from 'next';
+import { Cairo, Inter } from 'next/font/google';
+import { ThemeProvider } from '@/components/ThemeProvider';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import '@/app/globals.css';
+
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
+const cairo = Cairo({ subsets: ['arabic'], variable: '--font-cairo' });
+
+export const metadata: Metadata = {
+  title: 'Khalifa Industrial Repair | ورشة صيانة خليفة للمعدات',
+  description: 'Specialized repair services for steel cutting and bending machines, motor rewinding, and portable generators on Abi Shawk Street, Sinaiyah al-Qadimah, Riyadh.',
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${inter.variable} ${cairo.variable} font-sans bg-slate-50 text-slate-900 dark:bg- dark:text-slate-100 transition-colors duration-500 ease-in-out min-h-screen flex flex-col antialiased`}>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+          <div className="flex flex-col min-h-screen">
+            <Navbar />
+            <main className="flex-grow">{children}</main>
+            <Footer />
+          </div>
+        </ThemeProvider>
+      </body>
+    </html>
+  );
+}
+3.2 Landing Page (app/page.tsx)
+Creates a high-converting dual-language hero area. Features a stylized structural placeholder for the client's photograph, highlighting the lead engineers listed on the business card (Engineer Mohammad Anwar and Engineer Tasawwar).
+
+TypeScript
+'use client';
+
+import React from 'react';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+
+export default function HomePage() {
+  return (
+    <div className="relative overflow-hidden py-16 px-4 sm:px-6 lg:px-8">
+      {/* Decorative Blueprint Background Grids */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:30px_30px] opacity-[0.03] dark:opacity-[0.05] pointer-events-none" />
+      <div className="absolute top-1/4 left-1/4 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+        
+        {/* Copy Area (Dual Language Display) */}
+        <motion.div 
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+          className="space-y-6"
+        >
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-500/20 bg-blue-500/10 text-blue-600 dark:text-blue-400 text-xs font-mono">
+            <span className="w-2 h-2 rounded-full bg-blue-600 dark:bg-blue-400 animate-pulse" />
+            Sinaiyah al-Qadimah, Riyadh | الصناعية القديمة، الرياض
+          </div>
+          
+          <div className="space-y-2">
+            <h1 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
+              Khalifa Industrial <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-amber-500 dark:from-blue-400 dark:to-amber-400">
+                Machinery Repair
+              </span>
+            </h1>
+            <h2 className="text-2xl sm:text-3xl font-bold font-cairo text-slate-700 dark:text-slate-300">
+              ورشة صيانة خليفة للمعدات الصناعية
+            </h2>
+          </div>
+
+          <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl">
+            Established field support on Abi Shawk Street. Delivering heavy duty repairs for structural rebar benders and shears, electrical motors rewinding, job-site generators, and mechanical workshop tools.
+            <br />
+            <span className="font-cairo block mt-2 text-sm sm:text-base">
+              نقدم خدمات الصيانة والإصلاح المعتمدة لمكائن قص وثني الحديد، لف الدينموات، مولدات الكهرباء، والمعدات اليدوية في قلب المنطقة الصناعية بالرياض.
+            </span>
+          </p>
+
+          <div className="flex flex-wrap gap-4">
+            <Link href="/contact" className="px-6 py-3 rounded-lg font-bold bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-lg transition-transform active:scale-95 duration-200">
+              Contact Engineers / اتصل بنا
+            </Link>
+            <Link href="/troubleshooting" className="px-6 py-3 rounded-lg font-bold border border-slate-300 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors duration-200">
+              View Troubleshooting Manual
+            </Link>
+          </div>
+        </motion.div>
+
+        {/* Technical Portrait Placeholder Component */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="flex justify-center"
+        >
+          <div className="relative w-full max-w-md aspect-[4/5] rounded-2xl border-2 border-dashed border-slate-300 dark:border-slate-800 bg-slate-100/50 dark:bg-[#111827]/50 p-4 flex flex-col justify-between group overflow-hidden">
+            
+            {/* Inner Graphic Frame */}
+            <div className="absolute inset-0 bg-[radial-gradient(#1e40af_1px,transparent_1px)][background-size:16px_16px] opacity-10" />
+            
+            <div className="flex justify-between items-center z-10">
+              <span className="text-xs font-mono text-slate-400">KHALIFA_ENG_TEAM_PORTRAIT</span>
+              <span className="px-2 py-0.5 rounded bg-amber-500/10 text-amber-500 border border-amber-500/20 text-[10px] font-mono font-bold">ON-SITE SERVICE</span>
+            </div>
+
+            <div className="flex flex-col items-center justify-center text-center py-8 z-10 flex-grow">
+              <svg className="w-20 h-20 text-blue-500/30 dark:text-blue-500/20 mb-4 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+              </svg>
+              <h3 className="text-lg font-bold">Client Photo Placeholder</h3>
+              <p className="text-xs text-slate-500 max-w-xs mt-2 font-cairo">
+                Developer Note: Place the image file inside `/public/images/placeholder-engineers.jpg` showing Eng. Mohammad Anwar & Eng. Tasawwar.
+              </p>
+            </div>
+
+            <div className="p-3 bg-white dark:bg-[#0c111e] rounded-xl border border-slate-200 dark:border-slate-800 z-10">
+              <div className="flex justify-between items-center text-xs">
+                <div>
+                  <div className="font-bold">Eng. Mohammad Anwar</div>
+                  <div className="text-[10px] text-slate-400">Mechanical Systems Lead</div>
+                </div>
+                <div className="text-right text-[10px] font-mono text-blue-500">
+                  +966 590098586
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </motion.div>
+
+      </div>
+    </div>
+  );
+}
+3.3 Core Service Architecture (app/services/page.tsx)
+Renders the 5 main service pillars highlighted in the physical business card, categorized as responsive structured content cards.
+
+TypeScript
+'use client';
+
+import React from 'react';
+import { motion } from 'framer-motion';
+
+const servicesList =;
+
+export default function ServicesPage() {
+  return (
+    <div className="py-16 px-4 max-w-7xl mx-auto sm:px-6 lg:px-8">
+      <div className="text-center max-w-3xl mx-auto mb-16">
+        <h1 className="text-3xl sm:text-4xl font-black mb-4">Our Professional Portfolio / خدماتنا الفنية</h1>
+        <p className="text-slate-600 dark:text-slate-400 font-cairo text-sm sm:text-base">
+          Specialized field mechanical and electrical engineering support on Abi Shawk Street, Sinaiyah al-Qadimah.
+          <br />
+          خدمات هندسية متكاملة لضمان استمرارية تشغيل معداتكم في مواقع البناء والمصانع بالرياض.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {servicesList.map((service, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: index * 0.1 }}
+            className="p-6 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#111827] shadow-sm hover:shadow-xl hover:scale-[1.01] transition-all duration-300 flex flex-col justify-between"
+          >
+            <div>
+              <div className="text-4xl mb-4">{service.icon}</div>
+              <h3 className="text-xl font-bold text-blue-600 dark:text-blue-400 mb-1">{service.titleEn}</h3>
+              <h4 className="text-lg font-bold font-cairo text-slate-800 dark:text-slate-200 mb-4">{service.titleAr}</h4>
+              
+              <div className="space-y-3 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                <p>{service.descEn}</p>
+                <p className="font-cairo text-[13px] border-t border-slate-100 dark:border-slate-800/50 pt-3">{service.descAr}</p>
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  );
+}
+3.4 Troubleshooting Page (app/troubleshooting/page.tsx)
+This handles the technical specifications of machines extracted from the photos (JCF JMB-25 and Molendijk Schilt/Omer Cutters), embeds mathematical equations of physics using LaTeX styles, and mounts the interactive diagnostic troubleshooting helper.
+
+TypeScript
+'use client';
+
+import React from 'react';
+import { motion } from 'framer-motion';
+import DiagnosticWidget from '@/components/DiagnosticWidget';
+
+export default function TroubleshootingPage() {
+  return (
+    <div className="py-16 px-4 max-w-5xl mx-auto sm:px-6 lg:px-8 space-y-16">
+      
+      {/* Title block */}
+      <div className="space-y-4">
+        <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight">Technical Specifications & Field Diagnostic Guide</h1>
+        <p className="text-slate-600 dark:text-slate-400 font-cairo">
+          Detailed mechanical standards, calculations, and diagnostic manuals for workshop machinery repairs.
+          <br />
+          الدليل الهندسي لخصائص التشغيل وحسابات الجهد الميكانيكي ومعالجة أعطال ماكينات الحديد.
+        </p>
+      </div>
+
+      {/* Physics & Torque Calculation Section */}
+      <section className="p-6 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#111827] space-y-6">
+        <h2 className="text-xl sm:text-2xl font-bold">1. Applied Physics & Mechanical Limits</h2>
+        
+        <div className="space-y-4 text-sm sm:text-base leading-relaxed text-slate-600 dark:text-slate-400">
+          <p>
+            To calibrate repaired bending clutches and ensure structural safety, the required bending moment ($M$) for round steel rebar is modeled by the plastic section modulus ($W_p$) and material yield strength ($\sigma_y$):
+          </p>
+          <div className="p-4 rounded-lg bg-slate-50 dark:bg- border border-slate-200 dark:border-slate-800 text-center font-mono text-blue-600 dark:text-blue-400">
+            $$M = W_p \cdot \sigma_y$$
+          </div>
+          <p>
+            Where the circular cross-section plastic modulus is derived from the rebar diameter ($d$):
+          </p>
+          <div className="p-4 rounded-lg bg-slate-50 dark:bg- border border-slate-200 dark:border-slate-800 text-center font-mono text-blue-600 dark:text-blue-400">
+            $$W_p = \frac{d^3}{6}$$
+          </div>
+          <p>
+            For maximum single bar structural bending ($d = 25\text{ mm}$, yielding Grade SD400 carbon steel), the minimum continuous torque required is $1041.67\text{ N}\cdot\text{m}$. Slipping clutches indicate electromagnetic coil decay or plate oil contamination.
+          </p>
+        </div>
+      </section>
+
+      {/* Structured Core Specifications Tables */}
+      <section className="space-y-6">
+        <h2 className="text-xl sm:text-2xl font-bold">2. Original Machine Specifications</h2>
+        
+        <div className="space-y-8">
+          {/* Table 1: JCF JMB-25 Bender */}
+          <div className="space-y-3">
+            <h3 className="font-bold text-lg text-blue-500">JCF JMB-25 Table-Top Rebar Bender (KOREA)</h3>
+            <div className="overflow-x-auto border border-slate-200 dark:border-slate-800 rounded-lg">
+              <table className="w-full text-left border-collapse text-xs sm:text-sm">
+                <thead>
+                  <tr className="bg-slate-100 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+                    <th className="p-3 font-semibold">Technical Parameter</th>
+                    <th className="p-3 font-semibold">Specification Standard</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-200 dark:divide-slate-800">
+                  <tr>
+                    <td className="p-3 font-medium">Bending Capacity</td>
+                    <td className="p-3">Up to Ø25 mm (1 inch) / (SD400 rebar standards)</td>
+                  </tr>
+                  <tr>
+                    <td className="p-3 font-medium">Motor Power</td>
+                    <td className="p-3">2.2 kW / 3.0 HP continuous duty induction motor</td>
+                  </tr>
+                  <tr>
+                    <td className="p-3 font-medium">Electric Supply</td>
+                    <td className="p-3">220 Volts / 50-60 Hz, Single Phase (Job site friendly)</td>
+                  </tr>
+                  <tr>
+                    <td className="p-3 font-medium">Bending Speed</td>
+                    <td className="p-3">0 to 180 degrees in 6.0 seconds</td>
+                  </tr>
+                  <tr>
+                    <td className="p-3 font-medium">Dimensions & Weight</td>
+                    <td className="p-3">485 × 465 × 470 mm | 102 Kilograms</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* Table 2: Heavy Shear Line Cutters */}
+          <div className="space-y-3">
+            <h3 className="font-bold text-lg text-blue-500">Molendijk Schilt and Omer Heavy Shearing Machines</h3>
+            <div className="overflow-x-auto border border-slate-200 dark:border-slate-800 rounded-lg">
+              <table className="w-full text-left border-collapse text-xs sm:text-sm">
+                <thead>
+                  <tr className="bg-slate-100 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+                    <th className="p-3 font-semibold">Parameter</th>
+                    <th className="p-3 font-semibold">Molendijk MSC38-E</th>
+                    <th className="p-3 font-semibold">Molendijk MSC74-E</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-200 dark:divide-slate-800">
+                  <tr>
+                    <td className="p-3 font-medium">Structure</td>
+                    <td className="p-3">One-piece cast iron chassis</td>
+                    <td className="p-3">Heavy duty one-piece cast iron</td>
+                  </tr>
+                  <tr>
+                    <td className="p-3 font-medium">Motor Power</td>
+                    <td className="p-3">3.0 kW (3-Phase)</td>
+                    <td className="p-3">7.5 kW (3-Phase)</td>
+                  </tr>
+                  <tr>
+                    <td className="p-3 font-medium">Max Output RPM</td>
+                    <td className="p-3">52 RPM</td>
+                    <td className="p-3">30 RPM</td>
+                  </tr>
+                  <tr>
+                    <td className="p-3 font-medium">Cutting Capacity</td>
+                    <td className="p-3">1 × Ø30 mm (R = 650 N/mm²)</td>
+                    <td className="p-3">1 × Ø64 mm (R = 650 N/mm²)</td>
+                  </tr>
+                  <tr>
+                    <td className="p-3 font-medium">Chassis Weight</td>
+                    <td className="p-3">245 kg</td>
+                    <td className="p-3">1280 kg</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Interactive Interactive Diagnostic Component */}
+      <section className="space-y-4">
+        <h2 className="text-xl sm:text-2xl font-bold">3. Interactive Field Troubleshooting Finder</h2>
+        <p className="text-slate-600 dark:text-slate-400 text-sm">
+          Select your machine and symptom to immediately view the corresponding diagnostic process and corrective action.
+        </p>
+        <DiagnosticWidget />
+      </section>
+
+    </div>
+  );
+}
+3.5 Dynamic Diagnostic Component (components/DiagnosticWidget.tsx)
+This interactive, client-side React component acts as a "live diagnostics manual". Users can select their machine type to load corresponding real-world failure cases, physical mechanics explanations, and solution steps.
+
+TypeScript
+'use client';
+
+import React, { useState } from 'react';
+
+const troubleshootingDatabase = {
+  bender:,
+  cutter:,
+  motor:
+};
+
+type CategoryKey = 'bender' | 'cutter' | 'motor';
+
+export default function DiagnosticWidget() {
+  const [category, setCategory] = useState<CategoryKey>('bender');
+  const = useState<number>(0);
+
+  const activeCases = troubleshootingDatabase[category];
+
+  return (
+    <div className="border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden bg-white dark:bg-[#111827] shadow-lg">
+      
+      {/* Tab selection */}
+      <div className="flex border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50">
+        {(['bender', 'cutter', 'motor'] as CategoryKey).map((tab) => (
+          <button
+            key={tab}
+            onClick={() => { setCategory(tab); setSelectedCase(0); }}
+            className={`flex-1 py-4 text-xs sm:text-sm font-bold capitalize transition-all duration-200 ${
+              category === tab 
+               ? 'bg-white dark:bg-[#111827] text-blue-600 dark:text-blue-400 border-b-2 border-blue-600 dark:border-blue-400' 
+                : 'text-slate-500 hover:text-slate-800 dark:hover:text-slate-300'
+            }`}
+          >
+            {tab === 'bender' && 'Benders (مكائن الثني)'}
+            {tab === 'cutter' && 'Cutters (مكائن القص)'}
+            {tab === 'motor' && 'Motors (الدينموات)'}
+          </button>
+        ))}
+      </div>
+
+      <div className="p-6 grid grid-cols-1 md:grid-cols-12 gap-6">
+        
+        {/* Symptoms List (Left) */}
+        <div className="md:col-span-5 space-y-2">
+          <div className="text-xs font-mono text-slate-400 uppercase tracking-wider mb-2">Select Diagnostic Symptom</div>
+          {activeCases.map((item, index) => (
+            <button
+              key={index}
+              onClick={() => setSelectedCase(index)}
+              className={`w-full text-left p-3 rounded-lg text-xs sm:text-sm font-medium border transition-all duration-200 ${
+                selectedCase === index 
+                 ? 'border-blue-500/30 bg-blue-500/10 text-blue-700 dark:text-blue-300' 
+                  : 'border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/50 text-slate-700 dark:text-slate-300'
+              }`}
+            >
+              {item.symptom}
+            </button>
+          ))}
+        </div>
+
+        {/* Breakdown Output (Right) */}
+        <div className="md:col-span-7 bg-slate-50 dark:bg-[#0c111e] p-5 rounded-xl border border-slate-200 dark:border-slate-800 flex flex-col justify-between">
+          <div className="space-y-4">
+            <div>
+              <div className="text-[10px] font-mono text-slate-400 uppercase tracking-wider">Identified Root Cause</div>
+              <p className="text-sm font-bold text-slate-800 dark:text-slate-100 mt-1">{activeCases[selectedCase]?.cause}</p>
+            </div>
+            
+            <div className="h-[1px] bg-slate-200 dark:bg-slate-800" />
+            
+            <div>
+              <div className="text-[10px] font-mono text-slate-400 uppercase tracking-wider">Corrective Action (صيانة وإصلاح)</div>
+              <p className="text-sm font-mono text-emerald-600 dark:text-emerald-400 mt-1 leading-relaxed">
+                {activeCases[selectedCase]?.fix}
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-6 flex items-center justify-between text-[11px] text-slate-400 border-t border-slate-200 dark:border-slate-800 pt-3">
+            <span>Diagnosed by Khalifa Tech Group</span>
+            <span className="text-blue-500 font-bold">Standard Procedure</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  );
+}
+3.6 Contact Page (app/contact/page.tsx)
+Features localized details, WhatsApp direct-message shortcuts, working hours, and an iframe for Google Maps based on the client's actual coordinate parameters.
+
+TypeScript
+'use client';
+
+import React from 'react';
+import { motion } from 'framer-motion';
+
+export default function ContactPage() {
+  const mapUrl = "[https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3627.051410427306!2d46.7360496150028!3d24.638854984160455!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjTCbDM4JzE5LjkiTiA0NlwbNDQnMTAuOCJF!5e0!3m2!1sen!2ssa!4v1700000000000!5m2!1sen!2ssa](https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3627.051410427306!2d46.7360496150028!3d24.638854984160455!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjTCbDM4JzE5LjkiTiA0NlwbNDQnMTAuOCJF!5e0!3m2!1sen!2ssa!4v1700000000000!5m2!1sen!2ssa)";
+
+  return (
+    <div className="py-16 px-4 max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-12">
+      
+      <div className="text-center max-w-3xl mx-auto">
+        <h1 className="text-3xl sm:text-4xl font-black mb-4">Connect Directly with Our Engineers</h1>
+        <h2 className="text-xl font-bold font-cairo text-slate-700 dark:text-slate-300">تواصل مباشرة مع المهندسين المختصين بالصناعية</h2>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+        
+        {/* Contact Info (Left) */}
+        <div className="lg:col-span-5 space-y-6 flex flex-col justify-between">
+          <div className="p-6 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#111827] space-y-6">
+            <h3 className="text-lg font-bold border-b border-slate-200 dark:border-slate-800 pb-3">Official Directory | بيانات الاتصال</h3>
+            
+            <div className="space-y-4">
+              {/* Phone 1 */}
+              <div>
+                <span className="text-xs font-mono text-slate-400 block">Lead Engineer Mohammad Anwar (مهندس محمد أنور)</span>
+                <a href="tel:+966590098586" className="text-base sm:text-lg font-bold text-blue-600 dark:text-blue-400 hover:underline">
+                  +966 59 009 8586
+                </a>
+              </div>
+              
+              {/* Phone 2 */}
+              <div>
+                <span className="text-xs font-mono text-slate-400 block">Lead Engineer Tasawwar (مهندس تصور)</span>
+                <a href="tel:+966510243582" className="text-base sm:text-lg font-bold text-blue-600 dark:text-blue-400 hover:underline">
+                  +966 51 024 3582
+                </a>
+              </div>
+
+              {/* Physical Address */}
+              <div>
+                <span className="text-xs font-mono text-slate-400 block">Workshop Location (موقع الورشة)</span>
+                <p className="text-sm text-slate-700 dark:text-slate-300">
+                  Abi Shawk Street, off Prince Salman Road, Al-Sinaiyah al-Qadimah, Riyadh
+                </p>
+                <p className="text-xs font-cairo text-slate-500 mt-1">
+                  الرياض، المنطقة الصناعية القديمة، شارع أبي شوك المتفرع من الأمير سلمان
+                </p>
+              </div>
+
+              {/* Working Hours */}
+              <div>
+                <span className="text-xs font-mono text-slate-400 block">Hours of Operation</span>
+                <p className="text-sm font-medium">Saturday - Thursday: 8:00 AM - 6:00 PM</p>
+                <p className="text-sm font-medium">Friday: Closed / الجمعة مغلق</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Quick Messaging Actions */}
+          <div className="grid grid-cols-2 gap-4">
+            <a 
+              href="[https://wa.me/966590098586](https://wa.me/966590098586)" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="p-4 rounded-xl text-center bg-emerald-600 hover:bg-emerald-700 text-white font-bold transition-transform active:scale-95 duration-200 text-sm flex flex-col justify-center items-center gap-2"
+            >
+              <span>WhatsApp (Anwar)</span>
+              <span className="text-xs font-normal">واتساب م. أنور</span>
+            </a>
+            <a 
+              href="[https://wa.me/966510243582](https://wa.me/966510243582)" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="p-4 rounded-xl text-center bg-emerald-600 hover:bg-emerald-700 text-white font-bold transition-transform active:scale-95 duration-200 text-sm flex flex-col justify-center items-center gap-2"
+            >
+              <span>WhatsApp (Tasawwar)</span>
+              <span className="text-xs font-normal">واتساب م. تصور</span>
+            </a>
+          </div>
+        </div>
+
+        {/* Map Embedding Frame (Right) */}
+        <div className="lg:col-span-7 h-[400px] lg:h-auto rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-[#111827]">
+          <iframe 
+            src={mapUrl}
+            width="100%" 
+            height="100%" 
+            style={{ border: 0 }} 
+            allowFullScreen={true} 
+            loading="lazy" 
+            referrerPolicy="no-referrer-when-downgrade"
+            className="w-full h-full grayscale-[20%] dark:invert-[90%] dark:hue-rotate-[180deg]"
+          />
+        </div>
+
+      </div>
+    </div>
+  );
+}
+3.7 Theme Toggle Component (components/Navbar.tsx)
+A responsive bilingual header navigation bar containing an active CSS-state theme toggle to switch smoothly between Light and Dark visual systems.
+
+TypeScript
+'use client';
+
+import React from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useTheme } from 'next-themes';
+
+export default function Navbar() {
+  const pathname = usePathname();
+  const { theme, setTheme } = useTheme();
+
+  const links =;
+
+  return (
+    <header className="sticky top-0 z-50 backdrop-blur-md bg-slate-50/80 dark:bg-/80 border-b border-slate-200 dark:border-slate-800 transition-all duration-300">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        
+        {/* Brand Logo Anchor */}
+        <Link href="/" className="flex items-center gap-2">
+          <span className="text-lg sm:text-xl font-black tracking-tight text-blue-600 dark:text-blue-400">
+            KHALIFA <span className="text-slate-800 dark:text-white">REPAIR</span>
+          </span>
+        </Link>
+
+        {/* Navigation links */}
+        <nav className="hidden md:flex items-center gap-6">
+          {links.map((link) => (
+            <Link 
+              key={link.href} 
+              href={link.href}
+              className={`text-xs sm:text-sm font-medium transition-colors duration-200 ${
+                pathname === link.href 
+                 ? 'text-blue-600 dark:text-blue-400 font-bold' 
+                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+              }`}
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+
+        {/* Right side actions (Theme toggle + CTAs) */}
+        <div className="flex items-center gap-4">
+          <button
+            onClick={() => setTheme(theme === 'dark'? 'light' : 'dark')}
+            className="p-2 rounded-lg bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 transition-colors duration-200"
+            aria-label="Toggle Theme Mode"
+          >
+            {/* Simple toggle icons */}
+            <span className="block dark:hidden">🌙</span>
+            <span className="hidden dark:block">☀️</span>
+          </button>
+          
+          <a href="tel:+966590098586" className="px-4 py-2 text-xs font-bold rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition-colors duration-200 hidden sm:inline-block">
+            Call Workshop
+          </a>
+        </div>
+
+      </div>
+    </header>
+  );
+}
+4. GLOBAL CSS STYLING SHEET (app/globals.css)
+Add this standard configuration setup to handle CSS structures, font loads, smooth theme variable shifts, and scroll interactions:
+
+CSS
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-inter), var(--font-cairo), sans-serif;
+  }
+}
+
+/* Structural industrial micro-animations and styling overrides */
+.transition-colors {
+  transition-property: background-color, border-color, text-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Custom layout scrollbars for dark context */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #090d16;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+5. GENERATIVE PROMPT INSTRUCTIONS FOR TARGET LLM
+When executing this website build, follow these strict parameters:
+
+Fully Implement bilingual layouts (English/Arabic) across all visual containers using Cairo alongside Inter.
+
+Mount the dynamic Troubleshooting component directly into the app/troubleshooting/page.tsx directory using standard React client-side hooks.
+
+Embed direct linking structures across all buttons targeting the specific contact details: Engineer Mohammad Anwar (+966590098586) and Engineer Tasawwar (+966510243582).
+
+Adopt exact custom styles for the light and dark systems to ensure technicians and office administrators can read all technical diagnostic logs easily under all outdoor lighting levels.
