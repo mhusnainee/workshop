@@ -53,7 +53,7 @@ export default function HomePage() {
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className="space-y-6"
+            className="order-2 space-y-6 lg:order-1"
           >
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-500/20 bg-blue-500/10 text-blue-600 dark:text-blue-400 text-xs font-mono">
               <span className="w-2 h-2 rounded-full bg-blue-600 dark:bg-blue-400 animate-pulse" />
@@ -128,7 +128,7 @@ export default function HomePage() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex justify-center"
+            className="order-1 flex justify-center lg:order-2"
           >
             <div className="relative w-full max-w-md aspect-[4/5] rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-[#111827] flex flex-col justify-between group overflow-hidden shadow-xl">
               {/* Photo — fills the card, subtle zoom on hover */}
@@ -138,11 +138,13 @@ export default function HomePage() {
                 src={picture}
                 sizes="(min-width: 1024px) 448px, calc(100vw - 2rem)"
                 alt="Eng. Mohammad Anwar & Eng. Tasawwar — Khalifa Industrial Repair"
-                className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                className="absolute inset-0 w-full h-full object-cover object-center transition-[filter,transform] duration-500 lg:blur-[1px] lg:group-hover:scale-105 lg:group-hover:blur-0"
               />
 
+              <div className="absolute inset-0 hidden bg-black/35 transition-opacity duration-500 lg:block lg:group-hover:opacity-0" />
+
               {/* Gradient overlay so top badge and bottom bar stay readable */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-black/30" />
+              <div className="absolute inset-0 hidden bg-gradient-to-t from-black/80 via-black/10 to-black/30 lg:block" />
 
               {/* Top badge */}
               <div className="relative z-10 flex justify-between items-center p-4">
