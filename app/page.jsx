@@ -4,6 +4,8 @@ import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Wrench, Zap, Settings, Award, MapPin } from "lucide-react";
+import picture from "./assets/placeholder-engineers.jpg";
+import Image from "next/image";
 
 const stats = [
   { value: "25+", label: "Years Experience", labelAr: "سنة خبرة" },
@@ -121,84 +123,65 @@ export default function HomePage() {
             </div>
           </motion.div>
 
-          {/* Portrait Placeholder */}
+          {/* Engineer Portrait Card */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="flex justify-center"
           >
-            <div className="relative w-full max-w-md aspect-[4/5] rounded-2xl border-2 border-dashed border-slate-300 dark:border-slate-800 bg-slate-100/50 dark:bg-[#111827]/50 p-4 flex flex-col justify-between group overflow-hidden">
-              <div
-                className="absolute inset-0 opacity-5 dark:opacity-10"
-                style={{
-                  backgroundImage:
-                    "radial-gradient(#1e40af 1px, transparent 1px)",
-                  backgroundSize: "16px 16px",
-                }}
+            <div className="relative w-full max-w-md aspect-[4/5] rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-[#111827] flex flex-col justify-between group overflow-hidden shadow-xl">
+              {/* Photo — fills the card, subtle zoom on hover */}
+              <Image
+                width={800}
+                height={1000}
+                src={picture}
+                sizes="(min-width: 1024px) 448px, calc(100vw - 2rem)"
+                alt="Eng. Mohammad Anwar & Eng. Tasawwar — Khalifa Industrial Repair"
+                className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
               />
 
-              <div className="flex justify-between items-center z-10">
-                <span className="text-xs font-mono text-slate-400">
+              {/* Gradient overlay so top badge and bottom bar stay readable */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-black/30" />
+
+              {/* Top badge */}
+              <div className="relative z-10 flex justify-between items-center p-4">
+                <span className="text-xs font-mono text-white/70">
                   KHALIFA_ENG_TEAM
                 </span>
-                <span className="px-2 py-0.5 rounded bg-amber-500/10 text-amber-500 border border-amber-500/20 text-[10px] font-mono font-bold">
+                <span className="px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 border border-amber-500/30 text-[10px] font-mono font-bold backdrop-blur-sm">
                   ON-SITE SERVICE
                 </span>
               </div>
 
-              <div className="flex flex-col items-center justify-center text-center py-8 z-10 flex-grow">
-                <div className="w-20 h-20 rounded-full bg-blue-500/10 border-2 border-dashed border-blue-500/30 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                  <svg
-                    className="w-10 h-10 text-blue-500/40"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="1.2"
-                      d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
-                    />
-                  </svg>
-                </div>
-                <h3 className="text-lg font-bold">Client Photo Placeholder</h3>
-                <p className="text-xs text-slate-500 max-w-xs mt-2 font-cairo leading-relaxed">
-                  Place image in{" "}
-                  <code className="bg-slate-200 dark:bg-slate-800 px-1 rounded text-[10px]">
-                    /public/images/placeholder-engineers.jpg
-                  </code>
-                  <br />
-                  Eng. Mohammad Anwar & Eng. Tasawwar
-                </p>
-              </div>
-
-              <div className="p-3 bg-white dark:bg-[#0c111e] rounded-xl border border-slate-200 dark:border-slate-800 z-10 space-y-2">
+              {/* Bottom name bar */}
+              <div className="relative z-10 p-4 space-y-2">
                 <div className="flex justify-between items-center text-xs">
                   <div>
-                    <div className="font-bold">Eng. Mohammad Anwar</div>
-                    <div className="text-[10px] text-slate-400">
-                      Mechanical Systems Lead
+                    <div className="font-bold text-white">
+                      Eng. Mohammad Anwar
                     </div>
-                  </div>
-                  <a
-                    href="tel:+966590098586"
-                    className="text-right text-[10px] font-mono text-blue-500 hover:underline"
-                  >
-                    +966 590098586
-                  </a>
-                </div>
-                <div className="flex justify-between items-center text-xs border-t border-slate-100 dark:border-slate-800 pt-2">
-                  <div>
-                    <div className="font-bold">Eng. Tasawwar</div>
-                    <div className="text-[10px] text-slate-400">
+                    <div className="text-[10px] text-white/60">
                       Electrical Systems Lead
                     </div>
                   </div>
                   <a
+                    href="tel:+966590098586"
+                    className="text-right text-[10px] font-mono text-blue-300 hover:text-blue-200 hover:underline"
+                  >
+                    +966 590098586
+                  </a>
+                </div>
+                <div className="flex justify-between items-center text-xs border-t border-white/10 pt-2">
+                  <div>
+                    <div className="font-bold text-white">Eng. Tasawwar</div>
+                    <div className="text-[10px] text-white/60">
+                      Mechanical Systems Lead
+                    </div>
+                  </div>
+                  <a
                     href="tel:+966510243582"
-                    className="text-right text-[10px] font-mono text-blue-500 hover:underline"
+                    className="text-right text-[10px] font-mono text-blue-300 hover:text-blue-200 hover:underline"
                   >
                     +966 510243582
                   </a>
