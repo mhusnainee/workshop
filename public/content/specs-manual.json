@@ -43,8 +43,18 @@
   ],
   "contact": {
     "engineers": [
-      { "name": "Mohammad Anwar", "nameAr": "محمد أنور", "phone": "+966590098586", "role": "Mechanical Lead" },
-      { "name": "Tasawwar", "nameAr": "تصور", "phone": "+966510243582", "role": "Electrical Lead" }
+      {
+        "name": "Mohammad Anwar",
+        "nameAr": "محمد أنور",
+        "phone": "+966590098586",
+        "role": "Mechanical Lead"
+      },
+      {
+        "name": "Tasawwar",
+        "nameAr": "تصور",
+        "phone": "+966510243582",
+        "role": "Electrical Lead"
+      }
     ],
     "address": "Abi Shawk Street, off Prince Salman Road, Al-Sinaiyah al-Qadimah, Riyadh",
     "addressAr": "الرياض، المنطقة الصناعية القديمة، شارع أبي شوك المتفرع من الأمير سلمان",

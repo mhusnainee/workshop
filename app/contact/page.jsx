@@ -1,15 +1,20 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Phone, MapPin, Clock, MessageCircle } from 'lucide-react';
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { Phone, MapPin, Clock, MessageCircle } from "lucide-react";
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({ name: '', company: '', phone: '', message: '' });
+  const [formData, setFormData] = useState({
+    name: "",
+    company: "",
+    phone: "",
+    message: "",
+  });
   const [submitted, setSubmitted] = useState(false);
 
   const mapUrl =
-    'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3627.051410427306!2d46.7360496150028!3d24.638854984160455!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjTCsDM4JzE5LjkiTiA0NsKwNDQnMTAuOCJF!5e0!3m2!1sen!2ssa!4v1700000000000!5m2!1sen!2ssa';
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3627.051410427306!2d46.7360496150028!3d24.638854984160455!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjTCsDM4JzE5LjkiTiA0NsKwNDQnMTAuOCJF!5e0!3m2!1sen!2ssa!4v1700000000000!5m2!1sen!2ssa";
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -17,27 +22,30 @@ export default function ContactPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const msg = `New inquiry from ${formData.name} (${formData.company || 'N/A'}):\n${formData.message}\nCallback: ${formData.phone}`;
-    window.open(`https://wa.me/966590098586?text=${encodeURIComponent(msg)}`, '_blank');
+    const msg = `New inquiry from ${formData.name} (${formData.company || "N/A"}):\n${formData.message}\nCallback: ${formData.phone}`;
+    window.open(
+      `https://wa.me/966590098586?text=${encodeURIComponent(msg)}`,
+      "_blank",
+    );
     setSubmitted(true);
   };
 
   return (
     <div className="py-16 px-4 max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-12">
-
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-500/20 bg-blue-500/10 text-blue-600 dark:text-blue-400 text-xs font-mono mb-4">
           Direct Engineer Contact
         </div>
-        <h1 className="text-3xl sm:text-4xl font-black mb-3">Connect Directly with Our Engineers</h1>
+        <h1 className="text-3xl sm:text-4xl font-black mb-3">
+          Connect Directly with Our Engineers
+        </h1>
         <h2 className="text-xl font-bold font-cairo text-slate-700 dark:text-slate-300">
           تواصل مباشرة مع المهندسين المختصين بالصناعية
         </h2>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-
         {/* Contact Info */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
@@ -56,9 +64,16 @@ export default function ContactPage() {
                   <Phone size={16} />
                 </div>
                 <div>
-                  <span className="text-xs font-mono text-slate-400 block">Lead Engineer / مهندس محمد أنور</span>
-                  <div className="font-bold text-slate-800 dark:text-slate-100">Eng. Mohammad Anwar</div>
-                  <a href="tel:+966590098586" className="text-lg font-bold text-blue-600 dark:text-blue-400 hover:underline">
+                  <span className="text-xs font-mono text-slate-400 block">
+                    Lead Engineer / مهندس محمد أنور
+                  </span>
+                  <div className="font-bold text-slate-800 dark:text-slate-100">
+                    Eng. Mohammad Anwar
+                  </div>
+                  <a
+                    href="tel:+966590098586"
+                    className="text-lg font-bold text-blue-600 dark:text-blue-400 hover:underline"
+                  >
                     +966 59 009 8586
                   </a>
                 </div>
@@ -69,9 +84,16 @@ export default function ContactPage() {
                   <Phone size={16} />
                 </div>
                 <div>
-                  <span className="text-xs font-mono text-slate-400 block">Electrical Lead / مهندس تصور</span>
-                  <div className="font-bold text-slate-800 dark:text-slate-100">Eng. Tasawwar</div>
-                  <a href="tel:+966510243582" className="text-lg font-bold text-blue-600 dark:text-blue-400 hover:underline">
+                  <span className="text-xs font-mono text-slate-400 block">
+                    Electrical Lead / مهندس تصور
+                  </span>
+                  <div className="font-bold text-slate-800 dark:text-slate-100">
+                    Eng. Tasawwar
+                  </div>
+                  <a
+                    href="tel:+966510243582"
+                    className="text-lg font-bold text-blue-600 dark:text-blue-400 hover:underline"
+                  >
                     +966 51 024 3582
                   </a>
                 </div>
@@ -82,12 +104,17 @@ export default function ContactPage() {
                   <MapPin size={16} />
                 </div>
                 <div>
-                  <span className="text-xs font-mono text-slate-400 block">Workshop Location (موقع الورشة)</span>
+                  <span className="text-xs font-mono text-slate-400 block">
+                    Workshop Location (موقع الورشة)
+                  </span>
                   <p className="text-sm font-medium text-slate-700 dark:text-slate-300">
-                    Abi Shawk Street, off Prince Salman Road,<br />Al-Sinaiyah al-Qadimah, Riyadh
+                    Abi Shawk Street, off Prince Salman Road,
+                    <br />
+                    Al-Sinaiyah al-Qadimah, Riyadh
                   </p>
                   <p className="text-xs font-cairo text-slate-500 mt-1">
-                    الرياض، المنطقة الصناعية القديمة، شارع أبي شوك المتفرع من الأمير سلمان
+                    الرياض، المنطقة الصناعية القديمة، شارع أبي شوك المتفرع من
+                    الأمير سلمان
                   </p>
                 </div>
               </div>
@@ -97,9 +124,15 @@ export default function ContactPage() {
                   <Clock size={16} />
                 </div>
                 <div>
-                  <span className="text-xs font-mono text-slate-400 block">Hours of Operation</span>
-                  <p className="text-sm font-medium">Saturday – Thursday: 8:00 AM – 6:00 PM</p>
-                  <p className="text-sm font-medium text-slate-500">Friday: Closed / الجمعة مغلق</p>
+                  <span className="text-xs font-mono text-slate-400 block">
+                    Hours of Operation
+                  </span>
+                  <p className="text-sm font-medium">
+                    Saturday – Thursday: 8:00 AM – 6:00 PM
+                  </p>
+                  <p className="text-sm font-medium text-slate-500">
+                    Friday: Closed / الجمعة مغلق
+                  </p>
                 </div>
               </div>
             </div>
@@ -114,7 +147,9 @@ export default function ContactPage() {
             >
               <MessageCircle size={18} />
               <span>WhatsApp (Anwar)</span>
-              <span className="text-xs font-normal font-cairo">واتساب م. أنور</span>
+              <span className="text-xs font-normal font-cairo">
+                واتساب م. أنور
+              </span>
             </a>
             <a
               href="https://wa.me/966510243582"
@@ -124,7 +159,9 @@ export default function ContactPage() {
             >
               <MessageCircle size={18} />
               <span>WhatsApp (Tasawwar)</span>
-              <span className="text-xs font-normal font-cairo">واتساب م. تصور</span>
+              <span className="text-xs font-normal font-cairo">
+                واتساب م. تصور
+              </span>
             </a>
           </div>
         </motion.div>
@@ -151,18 +188,26 @@ export default function ContactPage() {
           </div>
 
           <div className="p-6 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#111827] space-y-4">
-            <h3 className="font-bold text-lg">Send an Inquiry / أرسل استفساراً</h3>
+            <h3 className="font-bold text-lg">
+              Send an Inquiry / أرسل استفساراً
+            </h3>
 
             {submitted ? (
               <div className="p-4 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-sm font-medium text-center">
-                ✅ Your message has been composed for WhatsApp. Thank you for contacting Khalifa Repair!<br />
-                <span className="font-cairo text-xs">تم توجيهك إلى واتساب لإرسال استفسارك.</span>
+                ✅ Your message has been composed for WhatsApp. Thank you for
+                contacting Khalifa Repair!
+                <br />
+                <span className="font-cairo text-xs">
+                  تم توجيهك إلى واتساب لإرسال استفسارك.
+                </span>
               </div>
             ) : (
               <div className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="text-xs font-mono text-slate-400 block mb-1">Full Name *</label>
+                    <label className="text-xs font-mono text-slate-400 block mb-1">
+                      Full Name *
+                    </label>
                     <input
                       type="text"
                       name="name"
@@ -173,7 +218,9 @@ export default function ContactPage() {
                     />
                   </div>
                   <div>
-                    <label className="text-xs font-mono text-slate-400 block mb-1">Company / Site</label>
+                    <label className="text-xs font-mono text-slate-400 block mb-1">
+                      Company / Site
+                    </label>
                     <input
                       type="text"
                       name="company"
@@ -186,7 +233,9 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <label className="text-xs font-mono text-slate-400 block mb-1">Callback Number</label>
+                  <label className="text-xs font-mono text-slate-400 block mb-1">
+                    Callback Number
+                  </label>
                   <input
                     type="tel"
                     name="phone"
@@ -198,7 +247,9 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <label className="text-xs font-mono text-slate-400 block mb-1">Describe Your Machine Problem *</label>
+                  <label className="text-xs font-mono text-slate-400 block mb-1">
+                    Describe Your Machine Problem *
+                  </label>
                   <textarea
                     name="message"
                     value={formData.message}
@@ -220,7 +271,6 @@ export default function ContactPage() {
             )}
           </div>
         </motion.div>
-
       </div>
     </div>
   );

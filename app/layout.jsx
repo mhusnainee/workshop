@@ -1,17 +1,17 @@
-import React from 'react';
-import { Cairo, Inter } from 'next/font/google';
-import { ThemeProvider } from '@/components/ThemeProvider';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import '@/app/globals.css';
+import React from "react";
+import { Cairo, Inter } from "next/font/google";
+import { ThemeProvider } from "@/components/ThemeProvider";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import "@/app/globals.css";
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
-const cairo = Cairo({ subsets: ['arabic'], variable: '--font-cairo' });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const cairo = Cairo({ subsets: ["arabic"], variable: "--font-cairo" });
 
 export const metadata = {
-  title: 'Khalifa Industrial Repair | ورشة صيانة خليفة للمعدات',
+  title: "Khalifa Industrial Repair | ورشة صيانة خليفة للمعدات",
   description:
-    'Specialized repair services for steel cutting and bending machines, motor rewinding, and portable generators on Abi Shawk Street, Sinaiyah al-Qadimah, Riyadh.',
+    "Specialized repair services for steel cutting and bending machines, motor rewinding, and portable generators on Abi Shawk Street, Sinaiyah al-Qadimah, Riyadh.",
 };
 
 export default function RootLayout({ children }) {
