@@ -9,10 +9,10 @@ export default function Footer() {
         <div className="space-y-3">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-amber-500 flex items-center justify-center text-white font-black text-sm">
-              K
+              S
             </div>
             <span className="font-black text-blue-600 dark:text-blue-400 tracking-tight">
-              KHALIFA REPAIR
+              STEEL BENDING
             </span>
           </div>
           <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
@@ -99,7 +99,7 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-slate-200 dark:border-slate-800 px-4 py-4 text-center text-xs text-slate-400">
-        © {new Date().getFullYear()} Khalifa Industrial Repair | خليفة لصيانة
+        © {new Date().getFullYear()} Steel Bending Repair | خليفة لصيانة
         المعدات الصناعية — All rights reserved.
       </div>
     </footer>

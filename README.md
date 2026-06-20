@@ -1,7 +1,7 @@
-# Khalifa Industrial Repair Website
+# Steel Bending Repair Website
 ## ورشة صيانة خليفة للمعدات الصناعية
 
-A Next.js 14+ bilingual (English/Arabic) website for **Khalifa Maintenance Workshop**, located on Abi Shawk Street, Al-Sinaiyah al-Qadimah, Riyadh, Saudi Arabia.
+A Next.js 14+ bilingual (English/Arabic) website for **Steel Bending Maintenance Workshop**, located on Abi Shawk Street, Al-Sinaiyah al-Qadimah, Riyadh, Saudi Arabia.
 
 ---
 
@@ -75,4 +75,4 @@ npm start
 
 ## License
 
-Private project — all rights reserved by Khalifa Industrial Repair.
+Private project — all rights reserved by Steel Bending Repair.

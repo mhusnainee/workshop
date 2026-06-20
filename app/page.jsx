@@ -62,7 +62,7 @@ export default function HomePage() {
 
             <div className="space-y-2">
               <h1 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
-                Khalifa Industrial <br />
+                Steel Bending <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-amber-500 dark:from-blue-400 dark:to-amber-400">
                   Machinery Repair
                 </span>
@@ -137,7 +137,7 @@ export default function HomePage() {
                 height={1000}
                 src={picture}
                 sizes="(min-width: 1024px) 448px, calc(100vw - 2rem)"
-                alt="Eng. Mohammad Anwar & Eng. Tasawwar — Khalifa Industrial Repair"
+                alt="Eng. Mohammad Anwar & Eng. Tasawwar — Steel Bending Repair"
                 className="absolute inset-0 w-full h-full object-cover object-center transition-[filter,transform] duration-500 lg:blur-[1px] lg:group-hover:scale-105 lg:group-hover:blur-0"
               />
 
@@ -149,7 +149,7 @@ export default function HomePage() {
               {/* Top badge */}
               <div className="relative z-10 flex justify-between items-center p-4">
                 <span className="text-xs font-mono text-white/70">
-                  KHALIFA_ENG_TEAM
+                  STEEL_BENDING_TEAM
                 </span>
                 <span className="px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 border border-amber-500/30 text-[10px] font-mono font-bold backdrop-blur-sm">
                   ON-SITE SERVICE

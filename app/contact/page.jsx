@@ -183,7 +183,7 @@ export default function ContactPage() {
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               className="w-full h-full"
-              title="Khalifa Workshop Location"
+              title="Steel Bending Workshop Location"
             />
           </div>
 
@@ -195,7 +195,7 @@ export default function ContactPage() {
             {submitted ? (
               <div className="p-4 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-sm font-medium text-center">
                 ✅ Your message has been composed for WhatsApp. Thank you for
-                contacting Khalifa Repair!
+                contacting Steel Bending!
                 <br />
                 <span className="font-cairo text-xs">
                   تم توجيهك إلى واتساب لإرسال استفسارك.

@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const cairo = Cairo({ subsets: ["arabic"], variable: "--font-cairo" });
 
 export const metadata = {
-  title: "Khalifa Industrial Repair | ورشة صيانة خليفة للمعدات",
+  title: "Steel Bending Repair | ورشة صيانة خليفة للمعدات",
   description:
     "Specialized repair services for steel cutting and bending machines, motor rewinding, and portable generators on Abi Shawk Street, Sinaiyah al-Qadimah, Riyadh.",
 };

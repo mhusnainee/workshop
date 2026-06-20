@@ -24,11 +24,11 @@ export default function Navbar() {
         {/* Brand Logo */}
         <Link href="/" className="flex items-center gap-2">
           <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-amber-500 flex items-center justify-center text-white font-black text-sm">
-            K
+            S
           </div>
           <span className="text-lg sm:text-xl font-black tracking-tight text-blue-600 dark:text-blue-400">
-            KHALIFA{" "}
-            <span className="text-slate-800 dark:text-white">REPAIR</span>
+            STEEL{" "}
+            <span className="text-slate-800 dark:text-white">BENDING</span>
           </span>
         </Link>
 

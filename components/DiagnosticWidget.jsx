@@ -191,7 +191,7 @@ export default function DiagnosticWidget() {
           </div>
 
           <div className="mt-6 flex items-center justify-between text-[11px] text-slate-400 border-t border-slate-200 dark:border-slate-800 pt-3">
-            <span>Diagnosed by Khalifa Tech Group</span>
+            <span>Diagnosed by Steel Bending Tech Group</span>
             <span className="text-blue-500 font-bold">Standard Procedure</span>
           </div>
         </div>

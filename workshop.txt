@@ -1,11 +1,11 @@
 NEXT.JS 14+ WEBSITE IMPLEMENTATION SPECIFICATION
-Project: Khalifa Industrial Repair / ورشة صيانة خليفة
+Project: Steel Bending Repair / ورشة صيانة خليفة
 Client Location: Sinaiyah al-Qadimah, Riyadh, Saudi Arabia
 1. BRAND SYSTEM & STRUCTURAL DEFINITION
 1.1 Brand Identity & Local Context
-The website is designed for "Khalifa Maintenance Workshop" (ورشة صيانة محل خليفة), a highly experienced heavy industrial repair shop located on Abi Shawk Street, branching from Prince Salman Road in Al-Sinaiyah al-Qadimah, Riyadh. The workshop specializes in repairing heavy steel cutting and bending machinery, electric motor rewinding, site generator maintenance, and professional field power tools.
+The website is designed for "Steel Bending Maintenance Workshop" (ورشة صيانة محل خليفة), a highly experienced heavy industrial repair shop located on Abi Shawk Street, branching from Prince Salman Road in Al-Sinaiyah al-Qadimah, Riyadh. The workshop specializes in repairing heavy steel cutting and bending machinery, electric motor rewinding, site generator maintenance, and professional field power tools.
 
-Suggested Brand Name (B2B Appeal): Khalifa Industrial Repair | خليفة لصيانة المعدات الصناعية
+Suggested Brand Name (B2B Appeal): Steel Bending Repair | خليفة لصيانة المعدات الصناعية
 
 Suggested Logo Concept: A clean modern monogram combining the mechanical geometry of a heavy shearing blade with the circular stator teeth of an electric motor rotor.
 
@@ -67,7 +67,7 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const cairo = Cairo({ subsets: ['arabic'], variable: '--font-cairo' });
 
 export const metadata: Metadata = {
-  title: 'Khalifa Industrial Repair | ورشة صيانة خليفة للمعدات',
+  title: 'Steel Bending Repair | ورشة صيانة خليفة للمعدات',
   description: 'Specialized repair services for steel cutting and bending machines, motor rewinding, and portable generators on Abi Shawk Street, Sinaiyah al-Qadimah, Riyadh.',
 };
 
@@ -124,7 +124,7 @@ export default function HomePage() {
           
           <div className="space-y-2">
             <h1 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
-              Khalifa Industrial <br />
+              Steel Bending <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-amber-500 dark:from-blue-400 dark:to-amber-400">
                 Machinery Repair
               </span>
@@ -165,7 +165,7 @@ export default function HomePage() {
             <div className="absolute inset-0 bg-[radial-gradient(#1e40af_1px,transparent_1px)][background-size:16px_16px] opacity-10" />
             
             <div className="flex justify-between items-center z-10">
-              <span className="text-xs font-mono text-slate-400">KHALIFA_ENG_TEAM_PORTRAIT</span>
+              <span className="text-xs font-mono text-slate-400">STEEL_BENDING_TEAM_PORTRAIT</span>
               <span className="px-2 py-0.5 rounded bg-amber-500/10 text-amber-500 border border-amber-500/20 text-[10px] font-mono font-bold">ON-SITE SERVICE</span>
             </div>
 
@@ -476,7 +476,7 @@ export default function DiagnosticWidget() {
           </div>
 
           <div className="mt-6 flex items-center justify-between text-[11px] text-slate-400 border-t border-slate-200 dark:border-slate-800 pt-3">
-            <span>Diagnosed by Khalifa Tech Group</span>
+            <span>Diagnosed by Steel Bending Tech Group</span>
             <span className="text-blue-500 font-bold">Standard Procedure</span>
           </div>
         </div>
@@ -614,7 +614,7 @@ export default function Navbar() {
         {/* Brand Logo Anchor */}
         <Link href="/" className="flex items-center gap-2">
           <span className="text-lg sm:text-xl font-black tracking-tight text-blue-600 dark:text-blue-400">
-            KHALIFA <span className="text-slate-800 dark:text-white">REPAIR</span>
+            STEEL <span className="text-slate-800 dark:text-white">BENDING</span>
           </span>
         </Link>
 
